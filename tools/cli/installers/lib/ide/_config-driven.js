@@ -528,18 +528,21 @@ LOAD and execute from: {project-root}/{{bmadFolderName}}/{{path}}
     const frontmatter = fmMatch[1];
     const body = fmMatch[2];
 
-    // Parse frontmatter with yaml library to extract description
-    let description;
+    // Parse frontmatter — preserve original name for clean UI display (Issue #1794)
+    let name, description;
     try {
       const parsed = yaml.parse(frontmatter);
+      const rawName = parsed?.name;
+      name = typeof rawName === 'string' && rawName ? rawName : skillName;
       const rawDesc = parsed?.description;
       description = typeof rawDesc === 'string' && rawDesc ? rawDesc : `${skillName} skill`;
     } catch {
+      name = skillName;
       description = `${skillName} skill`;
     }
 
     // Build new frontmatter with only name and description, unquoted
-    const newFrontmatter = yaml.stringify({ name: skillName, description: String(description) }, { lineWidth: 0 }).trimEnd();
+    const newFrontmatter = yaml.stringify({ name, description: String(description) }, { lineWidth: 0 }).trimEnd();
     return `---\n${newFrontmatter}\n---\n${body}`;
   }
 
