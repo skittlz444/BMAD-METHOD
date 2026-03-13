@@ -1,5 +1,20 @@
 # Changelog
 
+## [6.0.4]
+
+### 🎁 Features
+
+* Add edge case hunter review task - new reusable review task that exhaustively traces branching paths and boundary conditions in code, reporting only unhandled gaps. Method-driven analysis complementary to adversarial review (#1790)
+
+### 🐛 Bug Fixes
+
+* Fix brainstorming to not overwrite previous sessions; now prompts to continue existing brainstorming or start a new one when older brainstorming sessions are found
+* Fix installer templates - replace legacy `@` path prefixes with explicit `{project-root}` syntax for consistency (#1769)
+* Fix edge case hunter - remove zero-findings halt condition that was pressuring the LLM to hallucinate findings when none legitimately exist (#1797)
+* Fix broken docs domain references in README and GitHub issue templates (#1777)
+
+---
+
 ## [6.0.3]
 
 ### 🎁 Features
@@ -32,7 +47,7 @@
 * Add CodeBuddy platform support with installer configuration (#1483)
 * Add LLM audit prompt for file reference conventions - new audit tool using parallel subagents (#1720)
 * Migrate Codex installer from `.codex/prompts` to `.agents/skills` format to align with Codex CLI changes (#1729)
-* Convert review-pr and audit-file-refs tools to proper bmad-os skills with slash commands `/bmad-os-review-pr` and `/bmad-os-audit-file-refs` (#1732)
+* Convert review-pr and audit-file-refs tools to proper bmad-os skills with slash commands `bmad-os-review-pr` and `bmad-os-audit-file-refs` (#1732)
 
 ### 🐛 Bug Fixes
 
@@ -350,7 +365,7 @@ V6 Stable Release! The End of Beta!
 - TEA documentation restructured using Diátaxis framework (25 docs)
 - Style guide optimized for LLM readers (367 lines, down from 767)
 - Glossary rewritten using table format (123 lines, down from 373)
-- README overhaul with numbered command flows and prominent `/bmad-help` callout
+- README overhaul with numbered command flows and prominent `bmad-help` callout
 - New workflow map diagram with interactive HTML
 - New editorial review tasks for document quality
 - E2E testing methodology for Game Dev Studio
